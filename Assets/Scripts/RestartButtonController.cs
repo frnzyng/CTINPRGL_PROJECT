@@ -15,16 +15,16 @@ public class RestartButtonController : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
         restartButton = GetComponent<Button>();
-        restartButton.onClick.AddListener(OnClick);
+        restartButton.onClick.AddListener(() => StartCoroutine(OnClick()));
 
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = buttonClickAudio;
     }
 
-    private void OnClick()
+    private IEnumerator OnClick()
     {
         audioSource.PlayOneShot(buttonClickAudio);
-        
+        yield return new WaitForSeconds(0.4f);
         gameManager.RestartGame();
     }
 }

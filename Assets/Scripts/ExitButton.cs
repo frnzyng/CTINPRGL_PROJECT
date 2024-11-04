@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class AboutButton : MonoBehaviour
+public class ExitButton : MonoBehaviour
 {
     private GameManager gameManager;
-    public Button aboutButton;
+    public Button exitButton;
     public AudioClip buttonClickAudio;
     private AudioSource audioSource;
 
@@ -14,8 +14,8 @@ public class AboutButton : MonoBehaviour
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
-        aboutButton = GetComponent<Button>();
-        aboutButton.onClick.AddListener(() => StartCoroutine(OnClick()));
+        exitButton = GetComponent<Button>();
+        exitButton.onClick.AddListener(() => StartCoroutine(OnClick()));
 
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = buttonClickAudio;
@@ -25,6 +25,6 @@ public class AboutButton : MonoBehaviour
     {
         audioSource.PlayOneShot(buttonClickAudio);
         yield return new WaitForSeconds(0.4f);
-        gameManager.toggleAbout();
+        gameManager.ExitGame();
     }
 }

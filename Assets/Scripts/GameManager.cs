@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
     {
         audioSource.clip = menuGameAudio;
         audioSource.Play();
+        audioSource.volume = 0.2f;
     }
 
     public void PlayInGameAudio()
@@ -82,6 +83,7 @@ public class GameManager : MonoBehaviour
         audioSource.clip = inGameAudio;
         audioSource.loop = true;
         audioSource.Play();
+        audioSource.volume = 0.5f;
     }
 
     // OBSTACLE
@@ -212,6 +214,15 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void ExitGame()
+    {
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #else
+                Application.Quit();
+        #endif
     }
 
     public void toggleAbout()

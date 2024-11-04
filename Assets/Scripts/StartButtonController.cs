@@ -24,7 +24,7 @@ public class StartButtonController : MonoBehaviour
     private IEnumerator OnClick()
     {
         audioSource.PlayOneShot(buttonClickAudio);
-        yield return new WaitForSeconds(audioSource.clip.length);
+        yield return new WaitForSeconds(0.4f);
         gameManager.startGame();
     }
 }
